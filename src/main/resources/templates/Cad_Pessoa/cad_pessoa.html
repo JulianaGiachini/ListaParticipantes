@@ -109,20 +109,24 @@
 		if(podeEnviar){
 			$.ajax({
 			    type: "POST",// Tipo da requisição
-			    url: "/", // Caminho para envio da requisição
+			    url: "/cadastro", // Caminho para envio da requisição
 			    data: {
+			        nome:nome,
 			        cpf:cpf,
-					nome:nome,
-					email:email,
 					telefone:telefone,
+					email:email,
 					senha:senha,
-					confSenha:confSenha
+					confSenha:confSenha,
 			    },
 			    success: function (data) {
-			        alert("Deu bom!");
+			        if(data.status == false){
+			            alert(data.mensagem);
+			        }else{
+			            alert("Deu Bom!");
+			        }
 			    },
 			    error: function () {
-			        alert("Deu Ruim!");
+			        alert("Falha na comunicação com o servidor");
 			    }
 			});
 		}
